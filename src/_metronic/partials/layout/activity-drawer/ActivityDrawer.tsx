@@ -1,4 +1,4 @@
-import React, {FC} from 'react'
+import {FC} from 'react'
 import {Link} from 'react-router-dom'
 import {KTIcon} from '../../../helpers'
 import {Item1} from '../../content/activity/Item1'
@@ -13,7 +13,7 @@ import {Item8} from '../../content/activity/Item8'
 const ActivityDrawer: FC = () => (
   <div
     id='kt_activities'
-    className='bg-white'
+    className='bg-body'
     data-kt-drawer='true'
     data-kt-drawer-name='activities'
     data-kt-drawer-activate='true'
@@ -60,7 +60,7 @@ const ActivityDrawer: FC = () => (
         </div>
       </div>
       <div className='card-footer py-5 text-center' id='kt_activities_footer'>
-        <Link to='/crafted/pages/profile' className='btn btn-bg-white text-primary'>
+        <Link to='/crafted/pages/profile' className='btn btn-bg-body text-primary'>
           View All Activities
           <KTIcon iconName='arrow-right' className='fs-3 text-primary' />
         </Link>

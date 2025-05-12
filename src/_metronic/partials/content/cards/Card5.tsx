@@ -60,7 +60,9 @@ const Card5: FC<Props> = ({
             <KTIcon iconName='arrow-up-right' className='fs-3 me-1 text-success' />
           )}
 
-          {status === 'down' && <KTIcon iconName='black-left' className='fs-3 me-1 text-danger' />}
+          {status === 'down' && (
+            <KTIcon iconName='arrow-down-right' className='fs-3 me-1 text-danger' />
+          )}
 
           <div className={`fw-bolder me-2 ` + (status === 'up' ? 'text-success' : 'text-danger')}>
             {status === 'up' ? '+' : '-'}

@@ -1,5 +1,5 @@
 
-import React, {useRef, useState} from 'react'
+import {useRef, useState, FC } from 'react'
 import {Modal} from 'react-bootstrap'
 import {KTIcon} from '../../helpers'
 
@@ -8,7 +8,7 @@ export type Props = {
   handleClose: () => void
 }
 
-const InboxCompose: React.FC<Props> = ({show, handleClose}) => {
+const InboxCompose: FC<Props> = ({show, handleClose}) => {
   const composeToRef = useRef<HTMLInputElement | null>(null)
   const formRef = useRef<HTMLFormElement | null>(null)
   const [composeCC, setComposeCC] = useState('')

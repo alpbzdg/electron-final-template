@@ -3,7 +3,6 @@ import {SearchComponent} from '../../../assets/ts/components'
 import {KTIcon, toAbsoluteUrl} from '../../../helpers'
 
 const Search: FC = () => {
-  const [searchVal, setSearchVal] = useState<string>('')
   const [menuState, setMenuState] = useState<'main' | 'advanced' | 'preferences'>('main')
   const element = useRef<HTMLDivElement | null>(null)
   const wrapperElement = useRef<HTMLDivElement | null>(null)
@@ -59,33 +58,26 @@ const Search: FC = () => {
     <>
       <div
         id='kt_header_search'
-        className='header-search d-flex align-items-center w-100'
+        className='d-flex align-items-stretch'
         data-kt-search-keypress='true'
         data-kt-search-min-length='2'
         data-kt-search-enter='enter'
         data-kt-search-layout='menu'
-        data-kt-search-responsive='false'
         data-kt-menu-trigger='auto'
+        data-kt-menu-overflow='false'
         data-kt-menu-permanent='true'
-        data-kt-menu-placement='bottom-start'
-        data-kt-search='true'
+        data-kt-menu-placement='bottom-end'
         ref={element}
       >
-        <form data-kt-search-element='form' className='w-100 position-relative' autoComplete='off'>
-          <KTIcon
-            iconName='magnifier'
-            className='fs-2 search-icon position-absolute top-50 translate-middle-y ms-4'
-          />
-          <input
-            type='text'
-            className='search-input form-control ps-13 fs-7 h-40px'
-            name='search'
-            value={searchVal}
-            onChange={(e) => setSearchVal(e.target.value)}
-            placeholder='Quick Search'
-            data-kt-search-element='input'
-          />
-        </form>
+        <div
+          className='d-flex align-items-center'
+          data-kt-search-element='toggle'
+          id='kt_header_search_toggle'
+        >
+          <div className='btn btn-icon btn-custom btn-icon-muted btn-active-light btn-active-color-primary w-35px h-35px'>
+            <KTIcon iconName='magnifier' className='fs-2' />
+          </div>
+        </div>
 
         <div
           data-kt-search-element='content'

@@ -1,106 +1,77 @@
+import {FC} from 'react'
 import {useIntl} from 'react-intl'
+import {toAbsoluteUrl} from '../../../_metronic/helpers'
 import {PageTitle} from '../../../_metronic/layout/core'
 import {
-  ListsWidget1,
   ListsWidget2,
   ListsWidget3,
   ListsWidget4,
-  ListsWidget5,
   ListsWidget6,
-  MixedWidget10,
-  MixedWidget11,
-  MixedWidget2,
-  StatisticsWidget5,
-  TablesWidget10,
   TablesWidget5,
+  TablesWidget10,
+  MixedWidget8,
+  CardsWidget7,
+  CardsWidget17,
+  CardsWidget20,
+  ListsWidget26,
+  EngageWidget10,
 } from '../../../_metronic/partials/widgets'
+import { ToolbarWrapper } from '../../../_metronic/layout/components/toolbar'
+import { Content } from '../../../_metronic/layout/components/content'
 
-const DashboardPage = () => (
+const DashboardPage: FC = () => (
   <>
+    <ToolbarWrapper />
+    <Content>
     {/* begin::Row */}
-    <div className='row g-5 g-xl-8'>
-      <div className='col-xl-4'>
-        <StatisticsWidget5
-          className='card-xl-stretch mb-xl-8'
-          svgIcon='basket'
-          color='body-white'
-          iconColor='primary'
-          title='Shopping Cart'
-          description='Lands, Houses, Ranchos, Farms'
-          titleColor='gray-900'
-          descriptionColor='gray-400'
-        />
-      </div>
-
-      <div className='col-xl-4'>
-        <StatisticsWidget5
-          className='card-xl-stretch mb-xl-8'
-          svgIcon='element-11'
-          color='primary'
-          iconColor='white'
-          title='Appartments'
-          description='Flats, Shared Rooms, Duplex'
-          titleColor='white'
-          descriptionColor='white'
-        />
-      </div>
-
-      <div className='col-xl-4'>
-        <StatisticsWidget5
-          className='card-xl-stretch mb-5 mb-xl-8'
-          svgIcon='left'
-          color='dark'
-          iconColor='gray-100'
-          title='Sales Stats'
-          description='50% Increased for FY20'
-          titleColor='gray-100'
-          descriptionColor='gray-100'
-        />
-      </div>
-    </div>
-    {/* end::Row */}
-
-    {/* begin::Row */}
-    <div className='row g-5 g-xl-8'>
+    <div className='row g-5 g-xl-10 mb-5 mb-xl-10'>
       {/* begin::Col */}
-      <div className='col-xl-4'>
-        <ListsWidget1 className='card-xl-stretch mb-xl-8' />
+      <div className='col-md-6 col-lg-6 col-xl-6 col-xxl-3 mb-md-5 mb-xl-10'>
+        <CardsWidget20
+          className='h-md-50 mb-5 mb-xl-10'
+          description='Active Projects'
+          color='#F1416C'
+          img={toAbsoluteUrl('media/patterns/vector-1.png')}
+        />
+        <CardsWidget7
+          className='h-md-50 mb-5 mb-xl-10'
+          description='Professionals'
+          icon={false}
+          stats={357}
+          labelColor='dark'
+          textColor='gray-300'
+        />
       </div>
       {/* end::Col */}
 
       {/* begin::Col */}
-      <div className='col-xl-8'>
-        <TablesWidget5 className='card-xl-stretch mb-5 mb-xl-8' />
+      <div className='col-md-6 col-lg-6 col-xl-6 col-xxl-3 mb-md-5 mb-xl-10'>
+        <CardsWidget17 className='h-md-50 mb-5 mb-xl-10' />
+        <ListsWidget26 className='h-lg-50' />
+      </div>
+      {/* end::Col */}
+
+      {/* begin::Col */}
+      <div className='col-xxl-6'>
+        <EngageWidget10 className='h-md-100' />
       </div>
       {/* end::Col */}
     </div>
     {/* end::Row */}
 
     {/* begin::Row */}
-    <div className='row gy-5 g-xl-8'>
-      <div className='col-xxl-4'>
-        <MixedWidget2
-          className='card-xl-stretch mb-xl-8'
-          chartColor='danger'
-          chartHeight='200px'
-          strokeColor='#cb1e46'
-        />
+    <div className='row gx-5 gx-xl-10'>
+      {/* begin::Col */}
+      <div className='col-xxl-6 mb-5 mb-xl-10'>
+        {/* <app-new-charts-widget8 cssclassName="h-xl-100" chartHeight="275px" [chartHeightNumber]="275"></app-new-charts-widget8> */}
       </div>
-      <div className='col-xxl-4'>
-        <ListsWidget5 className='card-xxl-stretch' />
+      {/* end::Col */}
+
+      {/* begin::Col */}
+      <div className='col-xxl-6 mb-5 mb-xl-10'>
+        {/* <app-cards-widget18 cssclassName="h-xl-100" image="./assetsmedia/stock/600x600/img-65.jpg"></app-cards-widget18> */}
       </div>
-      <div className='col-xxl-4'>
-        <MixedWidget10
-          className='card-xxl-stretch-50 mb-5 mb-xl-8'
-          chartColor='primary'
-          chartHeight='150px'
-        />
-        <MixedWidget11
-          className='card-xxl-stretch-50 mb-5 mb-xl-8'
-          chartColor='primary'
-          chartHeight='175px'
-        />
-      </div>
+      {/* end::Col */}
     </div>
     {/* end::Row */}
 
@@ -129,10 +100,24 @@ const DashboardPage = () => (
       </div>
     </div>
     {/* end::Row */}
+
+    <div className='row g-5 gx-xxl-8'>
+      <div className='col-xxl-4'>
+        <MixedWidget8
+          className='card-xxl-stretch mb-xl-3'
+          chartColor='success'
+          chartHeight='150px'
+        />
+      </div>
+      <div className='col-xxl-8'>
+        <TablesWidget5 className='card-xxl-stretch mb-5 mb-xxl-8' />
+      </div>
+    </div>
+    </Content>
   </>
 )
 
-const DashboardWrapper = () => {
+const DashboardWrapper: FC = () => {
   const intl = useIntl()
   return (
     <>

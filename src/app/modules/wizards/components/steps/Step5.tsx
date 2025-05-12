@@ -1,4 +1,4 @@
-import React, {FC} from 'react'
+import {FC} from 'react'
 import {KTIcon} from '../../../../../_metronic/helpers'
 import {Link} from 'react-router-dom'
 

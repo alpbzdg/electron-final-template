@@ -1,31 +1,85 @@
-import {FC} from 'react'
-import {MenuInner} from './MenuInner'
+/* eslint-disable no-prototype-builtins */
+import {FC, useEffect} from 'react'
+import {ILayout, useLayout} from '../../core'
+import {MenuInner} from './header-menus'
 
 const Header: FC = () => {
+  const {config} = useLayout()
+  useEffect(() => {
+    updateDOM(config)
+  }, [config])
+
   return (
     <div
-      id='kt_header_menu'
-      className='header-menu align-items-stretch'
-      data-kt-drawer='true'
-      data-kt-drawer-name='header-menu'
-      data-kt-drawer-activate='{default: true, lg: false}'
-      data-kt-drawer-overlay='true'
-      data-kt-drawer-width="{default:'200px', '300px': '250px'}"
-      data-kt-drawer-direction='end'
-      data-kt-drawer-toggle='#kt_header_menu_mobile_toggle'
-      data-kt-swapper='true'
-      data-kt-swapper-mode='prepend'
-      data-kt-swapper-parent="{default: '#kt_body', lg: '#kt_header_nav'}"
+      className='
+        menu
+        menu-rounded
+        menu-column
+        menu-lg-row
+        my-5
+        my-lg-0
+        align-items-stretch
+        fw-semibold
+        px-2 px-lg-0
+    '
+      id='kt_app_header_menu'
+      data-kt-menu='true'
     >
-      <div
-        className='menu menu-lg-rounded menu-column menu-lg-row menu-state-bg menu-title-gray-700 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500 fw-bold my-5 my-lg-0 align-items-stretch'
-        id='#kt_header_menu'
-        data-kt-menu='true'
-      >
-        <MenuInner />
-      </div>
+      <MenuInner />
     </div>
   )
+}
+
+const updateDOM = (config: ILayout) => {
+  if (config.app?.header?.default?.fixed?.desktop) {
+    document.body.setAttribute('data-kt-app-header-fixed', 'true')
+  }
+
+  if (config.app?.header?.default?.fixed?.mobile) {
+    document.body.setAttribute('data-kt-app-header-fixed-mobile', 'true')
+  }
+
+  if (config.app?.header?.default?.stacked) {
+    document.body.setAttribute('data-kt-app-header-stacked', 'true')
+  }
+
+  const appHeaderDefaultStickyEnabled = config.app?.header?.default?.sticky?.enabled
+  let appHeaderDefaultStickyAttributes: {[attrName: string]: string} = {}
+  if (appHeaderDefaultStickyEnabled) {
+    appHeaderDefaultStickyAttributes = config.app?.header?.default?.sticky?.attributes as {
+      [attrName: string]: string
+    }
+  }
+
+  const appHeaderDefaultMinimizeEnabled = config.app?.header?.default?.minimize?.enabled
+  let appHeaderDefaultMinimizeAttributes: {[attrName: string]: string} = {}
+  if (appHeaderDefaultMinimizeEnabled) {
+    appHeaderDefaultMinimizeAttributes = config.app?.header?.default?.minimize?.attributes as {
+      [attrName: string]: string
+    }
+  }
+
+  setTimeout(() => {
+    const headerElement = document.getElementById('kt_app_header')
+    // header
+    if (headerElement) {
+      if (appHeaderDefaultStickyEnabled) {
+        for (const key in appHeaderDefaultStickyAttributes) {
+          if (appHeaderDefaultStickyAttributes.hasOwnProperty(key)) {
+            headerElement.setAttribute(key, appHeaderDefaultStickyAttributes[key])
+          }
+        }
+      }
+
+      if (appHeaderDefaultMinimizeEnabled) {
+        for (const key in appHeaderDefaultMinimizeAttributes) {
+          if (appHeaderDefaultMinimizeAttributes.hasOwnProperty(key)) {
+            headerElement.setAttribute(key, appHeaderDefaultMinimizeAttributes[key])
+          }
+        }
+      }
+    }
+  }, 0)
 }
 
 export {Header}

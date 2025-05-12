@@ -1,4 +1,4 @@
-import React, {Dispatch, SetStateAction, useEffect, useState} from 'react'
+import {Dispatch, SetStateAction, useEffect, useState, FC} from 'react'
 import {Modal} from 'react-bootstrap'
 import {KTIcon} from '../../../helpers'
 
@@ -8,7 +8,7 @@ type Props = {
   handleClose: () => void
 }
 
-const SelectLocationModal: React.FC<Props> = ({show, handleClose, data}) => {
+const SelectLocationModal: FC<Props> = ({show, handleClose, data}) => {
   useEffect(() => {
     initMap()
   }, [])

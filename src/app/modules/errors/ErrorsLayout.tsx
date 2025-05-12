@@ -1,6 +1,6 @@
 import {useEffect} from 'react'
 import {Outlet} from 'react-router-dom'
-import {useThemeMode} from '../../../_metronic/partials/layout/theme-mode/ThemeModeProvider'
+import {useThemeMode} from '../../../_metronic/partials'
 import {toAbsoluteUrl} from '../../../_metronic/helpers'
 
 const BODY_CLASSES = ['bgi-size-cover', 'bgi-position-center', 'bgi-no-repeat']

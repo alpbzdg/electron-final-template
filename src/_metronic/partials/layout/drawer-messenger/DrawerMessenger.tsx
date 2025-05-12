@@ -1,12 +1,12 @@
 
-import React, {FC} from 'react'
+import {FC} from 'react'
 import {KTIcon} from '../../../helpers'
 import {ChatInner} from '../../chat/ChatInner'
 
 const DrawerMessenger: FC = () => (
   <div
     id='kt_drawer_chat'
-    className='bg-white'
+    className='bg-body'
     data-kt-drawer='true'
     data-kt-drawer-name='chat'
     data-kt-drawer-activate='true'

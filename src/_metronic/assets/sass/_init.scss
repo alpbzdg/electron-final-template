@@ -28,5 +28,5 @@
 @import "./core/vendors/plugins/variables-dark";
 
 // Custom layout variables
-@import "layout/variables";
-
+@import "./core/layout/base/variables";
+@import "layout/variables.custom";

@@ -1,10 +1,10 @@
 
-import React from 'react'
+import { Content } from '../../../../_metronic/layout/components/content'
 import {Card5} from '../../../../_metronic/partials/content/cards/Card5'
 
 export function Campaigns() {
   return (
-    <>
+    <Content>
       <div className='d-flex flex-wrap flex-stack mb-6'>
         <h3 className='fw-bolder my-2'>
           My Campaigns
@@ -184,6 +184,6 @@ export function Campaigns() {
           </li>
         </ul>
       </div>
-    </>
+    </Content>
   )
 }

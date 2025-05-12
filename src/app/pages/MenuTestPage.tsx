@@ -1,4 +1,3 @@
-
 import {FC} from 'react'
 import SVG from 'react-inlinesvg'
 import {toAbsoluteUrl} from '../../_metronic/helpers'

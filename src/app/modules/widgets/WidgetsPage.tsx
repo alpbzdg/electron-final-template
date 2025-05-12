@@ -1,4 +1,4 @@
-import {Navigate, Outlet, Route, Routes} from 'react-router-dom'
+import {Navigate, Route, Routes, Outlet} from 'react-router-dom'
 import {PageLink, PageTitle} from '../../../_metronic/layout/core'
 import {Charts} from './components/Charts'
 import {Feeds} from './components/Feeds'

@@ -1,5 +1,3 @@
-
-import React from 'react'
 import {Link} from 'react-router-dom'
 import {KTIcon} from '../../../../_metronic/helpers'
 import {
@@ -8,10 +6,11 @@ import {
   TablesWidget1,
   TablesWidget5,
 } from '../../../../_metronic/partials/widgets'
+import { Content } from '../../../../_metronic/layout/components/content'
 
 export function Overview() {
   return (
-    <>
+    <Content>
       <div className='card mb-5 mb-xl-10' id='kt_profile_details_view'>
         <div className='card-header cursor-pointer'>
           <div className='card-title m-0'>
@@ -136,6 +135,6 @@ export function Overview() {
           <TablesWidget5 className='card-xxl-stretch mb-5 mb-xl-10' />
         </div>
       </div>
-    </>
+    </Content>
   )
 }

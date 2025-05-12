@@ -1,4 +1,4 @@
-import React, {FC} from 'react'
+import {FC} from 'react'
 import {Field, ErrorMessage} from 'formik'
 
 const Step3: FC = () => {

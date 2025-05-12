@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
-import {emailPreferences, IEmailPreferences} from '../SettingsModel'
+import {useState, FC} from 'react'
+import {IEmailPreferences, emailPreferences} from '../SettingsModel'
 
-const EmailPreferences: React.FC = () => {
+const EmailPreferences: FC = () => {
   const [data, setData] = useState<IEmailPreferences>(emailPreferences)
 
   const updateData = (fieldsToUpdate: Partial<IEmailPreferences>) => {

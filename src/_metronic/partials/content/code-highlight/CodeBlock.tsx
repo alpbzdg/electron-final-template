@@ -1,5 +1,5 @@
 
-import React, {useEffect, useRef, useState} from 'react'
+import {useState, useEffect, useRef, FC} from 'react'
 import {CopyToClipboard} from 'react-copy-to-clipboard'
 import {Highlight} from 'prism-react-renderer'
 import {OverlayTrigger, Tooltip} from 'react-bootstrap'
@@ -9,7 +9,7 @@ type Props = {
   language: string
 }
 
-const CodeBlock: React.FC<Props> = ({code, language}) => {
+const CodeBlock: FC<Props> = ({code, language}) => {
   const codeRef = useRef<HTMLDivElement | null>(null)
   const [copied, setCopied] = useState(false)
   useEffect(() => {

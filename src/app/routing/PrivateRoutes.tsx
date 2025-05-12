@@ -1,5 +1,5 @@
-import {FC, lazy, Suspense} from 'react'
-import {Navigate, Route, Routes} from 'react-router-dom'
+import {lazy, FC, Suspense} from 'react'
+import {Route, Routes, Navigate} from 'react-router-dom'
 import {MasterLayout} from '../../_metronic/layout/MasterLayout'
 import TopBarProgress from 'react-topbar-progress-indicator'
 import {DashboardWrapper} from '../pages/dashboard/DashboardWrapper'
@@ -23,14 +23,7 @@ const PrivateRoutes = () => {
         <Route path='auth/*' element={<Navigate to='/dashboard' />} />
         {/* Pages */}
         <Route path='dashboard' element={<DashboardWrapper />} />
-        <Route
-          path='builder'
-          element={
-            <SuspensedView>
-              <BuilderPageWrapper />
-            </SuspensedView>
-          }
-        />
+        <Route path='builder' element={<BuilderPageWrapper />} />
         <Route path='menu-test' element={<MenuTestPage />} />
         {/* Lazy Modules */}
         <Route

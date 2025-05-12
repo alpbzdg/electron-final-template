@@ -8,8 +8,8 @@ import {Step5} from './steps/Step5'
 import {StepperComponent} from '../../../../_metronic/assets/ts/components'
 import {Form, Formik, FormikValues} from 'formik'
 import {createAccountSchemas, ICreateAccount, inits} from './CreateAccountWizardHelper'
-import { Toolbar } from '../../../../_metronic/layout/components/toolbar/Toolbar'
-import { Content } from '../../../../_metronic/layout/components/Content'
+import { ToolbarWrapper } from '../../../../_metronic/layout/components/toolbar'
+import { Content } from '../../../../_metronic/layout/components/content'
 
 const Vertical = () => {
   const stepperRef = useRef<HTMLDivElement | null>(null)
@@ -58,7 +58,7 @@ const Vertical = () => {
 
   return (
     <>
-      <Toolbar />
+      <ToolbarWrapper />
       <Content>
         <div
           ref={stepperRef}

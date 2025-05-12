@@ -1,11 +1,10 @@
-
-import React from 'react'
 import {KTIcon} from '../../../../_metronic/helpers'
+import { Content } from '../../../../_metronic/layout/components/content'
 import {Card4} from '../../../../_metronic/partials/content/cards/Card4'
 
 export function Documents() {
   return (
-    <>
+    <Content>
       <div className='d-flex flex-wrap flex-stack mb-6'>
         <h3 className='fw-bolder my-2'>
           My Documents
@@ -91,6 +90,6 @@ export function Documents() {
           />
         </div>
       </div>
-    </>
+    </Content>
   )
 }

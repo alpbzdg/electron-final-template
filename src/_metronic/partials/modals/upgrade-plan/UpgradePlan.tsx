@@ -1,5 +1,5 @@
 
-import React, {FC, useState} from 'react'
+import { FC, useState } from 'react'
 import {KTIcon} from '../../../helpers'
 
 const plans = [

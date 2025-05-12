@@ -1,5 +1,4 @@
-
-import React, {useState} from 'react'
+import {useState, FC} from 'react'
 import {KTIcon} from '../../../../../../_metronic/helpers'
 import * as Yup from 'yup'
 import {useFormik} from 'formik'
@@ -33,7 +32,7 @@ const passwordFormValidationSchema = Yup.object().shape({
     .oneOf([Yup.ref('newPassword')], 'Passwords must match'),
 })
 
-const SignInMethod: React.FC = () => {
+const SignInMethod: FC = () => {
   const [emailUpdateData, setEmailUpdateData] = useState<IUpdateEmail>(updateEmail)
   const [passwordUpdateData, setPasswordUpdateData] = useState<IUpdatePassword>(updatePassword)
 

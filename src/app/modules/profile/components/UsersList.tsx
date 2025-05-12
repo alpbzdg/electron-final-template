@@ -2,6 +2,7 @@ import {FC} from 'react'
 import {IconUserModel} from '../ProfileModels'
 import {toAbsoluteUrl} from '../../../../_metronic/helpers'
 import {OverlayTrigger, Tooltip} from 'react-bootstrap'
+import { Content } from '../../../../_metronic/layout/components/content'
 
 type Props = {
   users?: Array<IconUserModel>
@@ -9,7 +10,7 @@ type Props = {
 
 const UsersList: FC<Props> = ({users = undefined}) => {
   return (
-    <>
+    <Content>
       {users &&
         users.map((user, i) => {
           return (
@@ -29,7 +30,7 @@ const UsersList: FC<Props> = ({users = undefined}) => {
             </OverlayTrigger>
           )
         })}
-    </>
+    </Content>
   )
 }
 

@@ -1,10 +1,9 @@
-
-import React from 'react'
+import { Content } from '../../../../_metronic/layout/components/content'
 import {Card3} from '../../../../_metronic/partials/content/cards/Card3'
 
 export function Connections() {
   return (
-    <>
+    <Content>
       <div className='d-flex flex-wrap flex-stack mb-6'>
         <h3 className='fw-bolder my-2'>
           My Contacts
@@ -196,6 +195,6 @@ export function Connections() {
           </li>
         </ul>
       </div>
-    </>
+    </Content>
   )
 }

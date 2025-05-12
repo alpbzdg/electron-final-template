@@ -1,4 +1,4 @@
-import React, {FC} from 'react'
+import {FC} from 'react'
 import {KTIcon, toAbsoluteUrl} from '../../../../../_metronic/helpers'
 import {ErrorMessage, Field} from 'formik'
 

@@ -69,7 +69,7 @@ const ChatInner: FC<Props> = ({isDrawer = false}) => {
             ? '#kt_drawer_chat_messenger_body'
             : '#kt_content, #kt_app_content, #kt_chat_messenger_body'
         }
-        data-kt-scroll-offset={isDrawer ? '0px' : '-2px'}
+        data-kt-scroll-offset={isDrawer ? '0px' : '5px'}
       >
         {messages.map((message, index) => {
           const userInfo = userInfos[message.user]

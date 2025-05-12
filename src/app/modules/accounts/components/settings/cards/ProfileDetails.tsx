@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import {useState, FC} from 'react'
 import {toAbsoluteUrl} from '../../../../../../_metronic/helpers'
 import {IProfileDetails, profileDetailsInitValues as initialValues} from '../SettingsModel'
 import * as Yup from 'yup'
@@ -16,7 +16,7 @@ const profileDetailsSchema = Yup.object().shape({
   currency: Yup.string().required('Currency is required'),
 })
 
-const ProfileDetails: React.FC = () => {
+const ProfileDetails: FC = () => {
   const [data, setData] = useState<IProfileDetails>(initialValues)
   const updateData = (fieldsToUpdate: Partial<IProfileDetails>): void => {
     const updatedData = Object.assign(data, fieldsToUpdate)
