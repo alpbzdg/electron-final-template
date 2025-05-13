@@ -24,7 +24,7 @@ const AuthLayout = () => {
             <span className="fs-2x fw-bolder">BAŞKENT ÜNİVERSİTESİ</span>
           </div>
 
-          <img src="/media/logos/auth-screen.png" alt="Logo" height={150} />
+          <img src="media/logos/auth-screen.png" alt="Logo" height={150} />
           <br />
           <div className="text-center">
             <h1 className="text-white fw-bold">Bilgi İşlem Daire Başkanlığı</h1>
