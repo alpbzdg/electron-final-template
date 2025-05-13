@@ -1,4 +1,38 @@
 
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body{
+    overflow-y: scroll;
+}
+
 body.login-page {
   @apply bg-transparent;
+}
+
+/* Scrollbar track */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Scrollbar thumb (kaydırma bloğu) */
+::-webkit-scrollbar-thumb {
+  background-color: #4e4e5a;
+  border-radius: 3px;
+}
+
+/* Scrollbar hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #63636f;
+}
+
+/* Scrollbar track (arka plan) */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.kucult-btn:hover{
+  background-color: '#3c3c3c';
 }

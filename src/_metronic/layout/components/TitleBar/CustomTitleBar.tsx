@@ -5,9 +5,9 @@ export const CustomTitleBar = () => {
 
     return (
         <div
-            className="d-flex align-items-center justify-content-between px-2 text-white rounded-top"
+            className="d-flex align-items-center justify-content-between px-2 text-white"
             style={{
-                WebkitAppRegion: 'drag', background: '#1f2020', padding: 4, zIndex: 1050, position: 'sticky', top: 0,
+                WebkitAppRegion: 'drag', background: '#1f2020', padding: 4, zIndex: 9999, position: 'fixed', top: 0, width: '100%'
             } as React.CSSProperties}
         >
             {/* Sol: Başlık */}
@@ -20,7 +20,7 @@ export const CustomTitleBar = () => {
             >
                 <button
                     onClick={handleMinimize}
-                    className="btn btn-sm p-0 px-3 bg-transparent text-white"
+                    className="btn btn-sm p-0 px-3 bg-transparent text-white kucult-btn"
                     style={{ border: 'none' }}
                     onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#3c3c3c')}
                     onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}

@@ -10,11 +10,12 @@ import { CustomTitleBar } from '../_metronic/layout/components/TitleBar/CustomTi
 const App = () => {
   return (
     <Suspense fallback={<LayoutSplashScreen />}>
+      <CustomTitleBar />
       <I18nProvider>
         <LayoutProvider>
           <ThemeModeProvider>
             <AuthInit>
-              <CustomTitleBar />
+
               <Outlet />
               <MasterInit />
             </AuthInit>

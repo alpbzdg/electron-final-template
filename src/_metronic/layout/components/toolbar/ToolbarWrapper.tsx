@@ -1,10 +1,10 @@
 import clsx from 'clsx'
-import {ToolbarType, useLayout} from '../../core'
-import {Toolbar} from './Toolbar'
-import {PageTitleWrapper} from './page-title'
+import { ToolbarType, useLayout } from '../../core'
+import { Toolbar } from './Toolbar'
+import { PageTitleWrapper } from './page-title'
 
 const ToolbarWrapper = () => {
-  const {config, classes} = useLayout()
+  const { config, classes } = useLayout()
   if (!config.app?.toolbar?.display) {
     return null
   }
@@ -22,7 +22,7 @@ const ToolbarWrapper = () => {
       <div
         id='kt_app_toolbar_container'
         className={clsx(
-          'app-container',
+          'app-container mt-6',
           classes.toolbarContainer.join(' '),
           config.app?.toolbar?.containerClass,
           config.app?.toolbar?.minimize?.enabled ? 'app-toolbar-minimize' : '',
@@ -48,4 +48,4 @@ const showPageTitle = (appToolbarLayout?: ToolbarType, appPageTitleDisplay?: boo
   return appPageTitleDisplay && viewsWithPageTitles.some((t) => t === appToolbarLayout)
 }
 
-export {ToolbarWrapper}
+export { ToolbarWrapper }
