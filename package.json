@@ -3,6 +3,8 @@
   "version": "8.3.0",
   "private": true,
   "type": "module",
+  "description": "Yönetim Bilgi Sistemi",
+  "author": {"name": "Bilgi İşlem Daire Başkanlığı","email": "webmaster@baskent.edu.tr","url": "https://baskent.edu.tr"},
   "main": "dist-electron/main/index.js",
   "debug": {
     "env": {
@@ -16,6 +18,22 @@
     "pretest": "vite build --mode=test",
     "test": "vitest run",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
+  },
+  "build": {
+    "productName": "Demo8App",
+    "appId": "com.baskent.demo8",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist",              
+      "dist-electron",      
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "build/icon.ico"
+    }
   },
   "dependencies": {
     "@formatjs/intl-pluralrules": "5.2.14",

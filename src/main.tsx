@@ -37,6 +37,7 @@ Chart.register(...registerables)
 const queryClient = new QueryClient()
 const container = document.getElementById('root')
 
+console.log('Sorun ne?');
 
 if (container) {
   createRoot(container).render(

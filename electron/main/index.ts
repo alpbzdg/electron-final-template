@@ -9,6 +9,8 @@ import { setToken, getToken, clearToken } from './auth'
 const require = createRequire(import.meta.url)
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
+console.log('electron çalıştı?');
+
 process.env.APP_ROOT = path.join(__dirname, '../..')
 export const MAIN_DIST = path.join(process.env.APP_ROOT, 'dist-electron')
 export const RENDERER_DIST = path.join(process.env.APP_ROOT, 'dist')
@@ -81,8 +83,8 @@ function createMainWindow() {
 }
 
 function createLoginWindow() {
+  console.log('Logine attı?');
   if (loginWindow) {
-    // pencere zaten açık, tekrar açma
     loginWindow.focus()
     return
   }
