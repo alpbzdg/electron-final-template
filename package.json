@@ -1,6 +1,6 @@
 {
   "name": "demo8-electron",
-  "version": "8.3.0",
+  "version": "0.0.2",
   "private": true,
   "type": "module",
   "description": "Yönetim Bilgi Sistemi",
@@ -24,8 +24,8 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
   "build": {
-    "productName": "Demo8App",
     "appId": "com.baskent.demo8",
+    "productName": "Yönetim Bilgi Sistemi",
     "directories": {
       "output": "release"
     },
@@ -37,7 +37,16 @@
     "win": {
       "target": "nsis",
       "icon": "build/icon.ico"
-    }
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "alpbzdg",
+        "repo": "electron-final-template",
+        "private": true,
+        "token": "tokennn"
+      }
+    ]
   },
   "dependencies": {
     "@formatjs/intl-pluralrules": "5.2.14",

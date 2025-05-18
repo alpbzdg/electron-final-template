@@ -4,6 +4,7 @@ import { PrivateRoutes } from './PrivateRoutes'
 import { ErrorsPage } from '../modules/errors/ErrorsPage'
 import { Logout, AuthPage, useAuth } from '../modules/auth'
 import { App } from '../App'
+import Update from '../modules/auth/components/Update';
 
 const AppRoutes: FC = () => {
   const { currentUser } = useAuth()
@@ -14,6 +15,7 @@ const AppRoutes: FC = () => {
         <Route element={<App />}>
           <Route path='error/*' element={<ErrorsPage />} />
           <Route path='logout' element={<Logout />} />
+          <Route path='update' element={<Update />} />
 
           {currentUser ? (
             <>

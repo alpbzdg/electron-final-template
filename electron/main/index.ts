@@ -31,6 +31,7 @@ const indexHtml = path.join(RENDERER_DIST, 'index.html')
 
 let mainWindow: BrowserWindow | null = null
 let loginWindow: BrowserWindow | null = null
+let updateWindow: BrowserWindow | null = null
 
 // TOKEN API
 ipcMain.handle('auth:setToken', (_, token) => setToken(token))
@@ -43,8 +44,57 @@ ipcMain.on('open-main-window', async () => {
     loginWindow.close()
     loginWindow = null
   }
+
+  if(updateWindow){
+    updateWindow.close()
+    updateWindow = null
+  }
+
   await createMainWindow()
 })
+
+function createUpdateWindow() {
+  if (updateWindow) {
+    updateWindow.focus()
+    return
+  }
+
+  updateWindow = new BrowserWindow({
+    width: 400,
+    height: 250,
+    resizable: false,
+    frame: false,
+    transparent: true,        
+    hasShadow: true,          
+    alwaysOnTop: true,
+    center: true,
+    show: false,              
+    title: 'Update',
+    icon: path.join(process.env.VITE_PUBLIC, 'favicon.ico'),
+    webPreferences: {
+      preload,
+      contextIsolation: true,
+      nodeIntegration: false,
+    },
+  })
+
+  updateWindow.once('ready-to-show', () => {
+    updateWindow?.show()
+  })
+
+  updateWindow.on('closed', () => {
+    updateWindow = null
+  })
+
+  if (VITE_DEV_SERVER_URL) {
+    updateWindow.loadURL(`${VITE_DEV_SERVER_URL}/#/update`)
+  } else {
+    updateWindow.loadFile(indexHtml, { hash: 'update' })
+  }
+
+  return updateWindow
+}
+
 
 function createMainWindow() {
 
@@ -76,8 +126,6 @@ function createMainWindow() {
     if (url.startsWith('https:')) shell.openExternal(url)
     return { action: 'deny' }
   })
-
-  update(mainWindow)
 }
 
 function createLoginWindow() {
@@ -115,13 +163,35 @@ function createLoginWindow() {
 
 
 app.whenReady().then(async () => {
-  const token = await getToken()
-  if (token) {
-    await createMainWindow()
-  } else {
-    createLoginWindow()
+  if (!app.isPackaged) {
+    console.log('[dev] Güncelleme kontrolü atlandı.')
+    const token = await getToken()
+    if (token) {
+      await createMainWindow()
+    } else {
+      createLoginWindow()
+    }
+    return
+  }
+
+  // PROD ortamı
+  try {
+    const updateWin = createUpdateWindow()
+    update(updateWin!) 
+  } catch (err) {
+    console.error('[update] Güncelleme başlatılamadı:', err)
+
+    const token = await getToken()
+    if (token) {
+      await createMainWindow()
+    } else {
+      createLoginWindow()
+    }
   }
 })
+
+
+
 
 app.on('window-all-closed', () => {
   mainWindow = null
