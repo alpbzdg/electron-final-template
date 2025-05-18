@@ -89,11 +89,7 @@ contextBridge.exposeInMainWorld('ipcRenderer', {
 contextBridge.exposeInMainWorld('electronAPI', {
   openMainWindow: () => ipcRenderer.send('open-main-window'),
   logout: () => ipcRenderer.send('logout'),
-  // 'window-all-closed' event'i genellikle app.on ile dinlenir ve programatik olarak tetiklenmez.
-  // Eğer uygulamanın tüm pencerelerini kapatıp çıkmak istiyorsanız,
-  // main process'te app.quit() için bir IPC handler oluşturabilirsiniz.
-  // Şimdilik 'closeApp' yorum satırı yapıyorum, amacınıza göre düzenleyebilirsiniz.
-  closeApp: () => ipcRenderer.send('app-quit'), // Örnek: main'de ipcMain.on('app-quit', () => app.quit())
+  closeApp: () => ipcRenderer.send('app-quit'),
   windowControl: (action: 'minimize' | 'maximize' | 'close') => ipcRenderer.send('window-control', action),
 });
 
@@ -102,6 +98,10 @@ contextBridge.exposeInMainWorld('authAPI', {
   getToken: () => ipcRenderer.invoke('auth:getToken'),
   clearToken: () => ipcRenderer.invoke('auth:clearToken'),
 });
+
+contextBridge.exposeInMainWorld('appAPI', {
+  getVersion: () => ipcRenderer.invoke('get-app-version')
+})
 
 contextBridge.exposeInMainWorld('updateAPI', {
   checkUpdate: () => ipcRenderer.invoke('check-update'),

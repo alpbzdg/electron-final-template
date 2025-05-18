@@ -9,43 +9,51 @@ const Update = () => {
     useEffect(() => {
         window.updateAPI.checkUpdate()
 
-        const handleUpdateAvailable = (_e: any, data: any) => {
-            if (!data || typeof data !== 'object') {
-                console.error('[Update UI] Geçersiz update-can-available verisi:', data)
-                setStatus('Güncelleme bilgisi alınamadı.')
-                return
+        const handleUpdateAvailable = (data: any) => {
+            console.log('[Update Handler] data:', data)
+
+            if (typeof data !== 'object' || data === null) {
+            console.error('[Update UI] Geçersiz update-can-available verisi:', data)
+            setStatus('Güncelleme bilgisi alınamadı.')
+            return
             }
 
             if (data.update) {
-                setHasUpdate(true)
-                setStatus(`Yeni sürüm bulundu: v${data.newVersion}`)
-                window.updateAPI.startDownload()
+            setHasUpdate(true)
+            setStatus(`Yeni sürüm bulundu: v${data.newVersion}`)
+            window.updateAPI.startDownload()
             } else {
-                setStatus(`Uygulamanız güncel. (v${data.version})`)
-                setTimeout(() => {
-                    window.electronAPI.openMainWindow()
-                    window.close()
-                }, 2000)
+            setStatus(`Uygulamanız güncel. (v${data.version})`)
+            setTimeout(() => {
+                window.electronAPI.openMainWindow()
+                window.close()
+            }, 2000)
             }
         }
 
-        const handleProgress = (_e: any, data: { percent: number }) => {
-            setStatus('Güncelleme indiriliyor...')
-            setProgress(Math.floor(data.percent))
+        const handleProgress = (...args: any[]) => {
+        const data = args[0]
+        if (!data || typeof data.percent !== 'number') {
+            console.warn('[Update UI] Geçersiz progress verisi:', data)
+            return
+        }
+
+        setStatus('Güncelleme indiriliyor...')
+        setProgress(Math.floor(data.percent))
         }
 
         const handleDownloaded = () => {
             setStatus('Güncelleme tamamlandı. Kurulum başlatılıyor...')
             setTimeout(() => {
-                window.updateAPI.quitAndInstall()
+            window.updateAPI.quitAndInstall()
             }, 1500)
         }
 
-        const handleError = (_e: any, err: any) => {
+        const handleError = (err: any) => {
             const message =
-                typeof err === 'object' && err !== null && 'message' in err
-                    ? err.message
-                    : 'Güncelleme sırasında bilinmeyen bir hata oluştu.'
+            typeof err === 'object' && err !== null && 'message' in err
+                ? err.message
+                : 'Güncelleme sırasında bilinmeyen bir hata oluştu.'
 
             console.error('[Update UI] Hata yakalandı:', err)
             setError(message)
@@ -66,6 +74,7 @@ const Update = () => {
             window.ipcRenderer.off('update-error', handleError)
         }
     }, [])
+
 
     return (
         <div className='d-flex flex-column flex-center h-100 bg-light'>

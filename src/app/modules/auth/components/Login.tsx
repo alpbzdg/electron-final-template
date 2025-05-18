@@ -1,5 +1,5 @@
 
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import * as Yup from 'yup'
 import clsx from 'clsx'
 import { Link } from 'react-router-dom'
@@ -33,7 +33,13 @@ const initialValues = {
 
 export function Login() {
   const [loading, setLoading] = useState(false)
+  const [version, setVersion] = useState<string>('')
+
   const { saveAuth, setCurrentUser } = useAuth()
+  
+useEffect(() => {
+    window.appAPI.getVersion().then(setVersion)
+  }, [])
 
   const formik = useFormik({
     initialValues,
@@ -66,7 +72,7 @@ export function Login() {
     >
       {/* begin::Heading */}
       <div className='text-center mb-11'>
-        <h1 className='text-gray-900 fw-bolder mb-3'>Giriş Yap</h1>
+        <h1 className='text-gray-900 fw-bolder mb-3'>Giriş Yap --En Son Update 123123zzz-- v.0.02</h1>
       </div>
       {/* begin::Heading */}
 
@@ -165,6 +171,7 @@ export function Login() {
         </button>
       </div>
       {/* end::Action */}
+      Sürüm: {version} 
     </form>
   )
 }

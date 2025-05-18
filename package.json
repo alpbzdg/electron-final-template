@@ -1,5 +1,5 @@
 {
-  "name": "demo8-electron",
+  "name": "ybs",
   "version": "0.0.2",
   "private": true,
   "type": "module",
@@ -25,7 +25,8 @@
   },
   "build": {
     "appId": "com.baskent.demo8",
-    "productName": "Yönetim Bilgi Sistemi",
+    "productName": "ybs",
+    "artifactName": "${productName}-v${version}.${ext}",
     "directories": {
       "output": "release"
     },
@@ -35,16 +36,14 @@
       "package.json"
     ],
     "win": {
-      "target": "nsis",
+      "target": "nsis-web",
       "icon": "build/icon.ico"
     },
     "publish": [
       {
         "provider": "github",
         "owner": "alpbzdg",
-        "repo": "electron-final-template",
-        "private": true,
-        "token": "tokennn"
+        "repo": "electron-final-template"
       }
     ]
   },
@@ -106,7 +105,7 @@
     "css-loader": "7.1.2",
     "del": "7.1.0",
     "electron": "^33.2.0",
-    "electron-builder": "^24.13.3",
+    "electron-builder": "24.6.0",
     "eslint": "^8.45.0",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.9",

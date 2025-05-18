@@ -38,6 +38,10 @@ ipcMain.handle('auth:setToken', (_, token) => setToken(token))
 ipcMain.handle('auth:getToken', () => getToken())
 ipcMain.handle('auth:clearToken', () => clearToken())
 
+ipcMain.handle('get-app-version', () => {
+  return app.getVersion()
+})
+
 // OPEN MAIN WINDOW FROM LOGIN
 ipcMain.on('open-main-window', async () => {
   if (loginWindow) {
@@ -45,18 +49,25 @@ ipcMain.on('open-main-window', async () => {
     loginWindow = null
   }
 
-  if(updateWindow){
+  if (updateWindow) {
     updateWindow.close()
     updateWindow = null
   }
 
-  await createMainWindow()
+  const token = await getToken()
+
+  if (token) {
+    await createMainWindow()
+  } else {
+    createLoginWindow()
+  }
 })
 
-function createUpdateWindow() {
+
+function createUpdateWindow():BrowserWindow {
   if (updateWindow) {
     updateWindow.focus()
-    return
+    return updateWindow;
   }
 
   updateWindow = new BrowserWindow({
@@ -131,7 +142,7 @@ function createMainWindow() {
 function createLoginWindow() {
   if (loginWindow) {
     loginWindow.focus()
-    return
+    return loginWindow;
   }
 
   loginWindow = new BrowserWindow({
@@ -161,37 +172,10 @@ function createLoginWindow() {
   }
 }
 
-
 app.whenReady().then(async () => {
-  if (!app.isPackaged) {
-    console.log('[dev] Güncelleme kontrolü atlandı.')
-    const token = await getToken()
-    if (token) {
-      await createMainWindow()
-    } else {
-      createLoginWindow()
-    }
-    return
-  }
-
-  // PROD ortamı
-  try {
     const updateWin = createUpdateWindow()
-    update(updateWin!) 
-  } catch (err) {
-    console.error('[update] Güncelleme başlatılamadı:', err)
-
-    const token = await getToken()
-    if (token) {
-      await createMainWindow()
-    } else {
-      createLoginWindow()
-    }
-  }
+    update(updateWin)
 })
-
-
-
 
 app.on('window-all-closed', () => {
   mainWindow = null
@@ -238,7 +222,11 @@ ipcMain.on('logout', () => {
     mainWindow = null
   }
 
-  createLoginWindow()
+  if (!loginWindow) {
+    createLoginWindow()
+  } else {
+    loginWindow.focus()
+  }
 })
 
 ipcMain.on('window-all-closed', () => {
@@ -246,18 +234,20 @@ ipcMain.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit()
 })
 
-ipcMain.on('window-control', (_, action) => {
-  if (!mainWindow) return
+ipcMain.on('window-control', (event, action) => {
+  const win = BrowserWindow.fromWebContents(event.sender)
+  if (!win) return
+
   switch (action) {
     case 'minimize':
-      mainWindow.minimize()
+      win.minimize()
       break
     case 'maximize':
-      if (mainWindow.isMaximized()) mainWindow.unmaximize()
-      else mainWindow.maximize()
+      if (win.isMaximized()) win.unmaximize()
+      else win.maximize()
       break
     case 'close':
-      mainWindow.close()
+      win.close()
       break
   }
 })

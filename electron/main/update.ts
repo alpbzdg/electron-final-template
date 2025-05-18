@@ -52,24 +52,26 @@ export function update(win: Electron.BrowserWindow) {
   // ---- IPC Handle'lar ----
 
   ipcMain.handle('check-update', async () => {
-    if (!app.isPackaged) {
-      const error = new Error('Bu özellik sadece paketli sürümlerde çalışır.')
-      console.warn('[check-update] Geliştirme modunda atlandı.')
-      return { message: error.message, error }
-    }
+  if (!app.isPackaged) {
+    const error = new Error('Bu özellik sadece paketli sürümlerde çalışır.')
+    console.warn('[check-update] Geliştirme modunda atlandı.')
+    return { message: error.message, error }
+  }
 
-    try {
-      console.log('[check-update] Güncelleme kontrolü başlatılıyor...')
-      return await autoUpdater.checkForUpdatesAndNotify()
-    } catch (error) {
-      const message =
-        typeof error === 'object' && error !== null && 'message' in error
-          ? error.message
-          : 'Ağ hatası oluştu.'
-      console.error('[check-update] Hata:', error)
-      return { message, error }
-    }
-  })
+  try {
+    console.log('[check-update] Güncelleme kontrolü başlatılıyor...')
+    await autoUpdater.checkForUpdates() // <-- BURADA
+    return { ok: true }
+  } catch (error) {
+    const message =
+      typeof error === 'object' && error !== null && 'message' in error
+        ? error.message
+        : 'Ağ hatası oluştu.'
+    console.error('[check-update] Hata:', error)
+    return { message, error }
+  }
+})
+
 
   ipcMain.handle('start-download', (event) => {
     console.log('[start-download] İndirme başlatıldı.')
